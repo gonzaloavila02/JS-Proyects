@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="05 Entregable Manipulando la DOM.css">
+</head>
+
+<body>
+    <h1>Ejemplo de gestión de DOM</h1>
+    <div id="quesevea">
+        Aquí tienes un fichero con contenido espúreo para que demuestres como sabes gestionar la DOM
+        Se compone de varios campos, clases, y etiquetas HTML, que tu tendrás que cambiar siguiendo tu mejor criterio
+    </div>
+    <br>
+    <div class="verde">La Liga de fútbol profesional está comandada por el mejor equipo de España. ¡De eso no hay duda!
+        <p>A continuación verás los 5 mejores equipos de España:</p>
+        <table>
+            <th>Núm</th>
+            <th>Equipo</th>
+            <th>Puntos</th>
+            <th></th>
+            <tr>
+                <td>
+                    <img src="feliz.png" style="float:left">
+                </td>
+                <td>1</td>
+                <td>F.C. Barcelona, el Barça</td>
+                <td>62</td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td>2</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Atlético de Madrid</td>
+                <td>45</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Real Sociedad</td>
+                <td>44</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td >Bétis</td>
+                <td>41</td>
+            </tr>
+        </table>
+    </div>
+    <p class="verde">Éste se perdió aquí, ¿por qué...?<span>RealMadrid</span><span>53</span></p>
+</body>
+    <script>
+        var totalTr= document.getElementsByTagName("tr");
+        totalTr[1].style.backgroundColor = "yellow";
+
+        totalTr[2].style.backgroundColor = "#4AD1F6";
+
+        var divBorde = document.getElementsByClassName("verde");
+        function cambiarBorde(array){
+            for (let i = 0; i<array.length; i++){
+                array[i].style.border = "2px solid black";
+            }
+        }
+        cambiarBorde(divBorde);
+
+        var arrParrafos = document.getElementsByTagName("p");
+        function cambiarColor(array){
+            for (let i = 0; i<array.length; i++){
+                array[i].style.color = "brown";
+            }
+        }
+        cambiarColor(arrParrafos);
+        
+        //Primero almacenamos en variables el nombre del equipo y su puntuación
+        var arrayRM = document.getElementsByTagName("span");
+        var RM = arrayRM[0].innerText;
+        var points = arrayRM[1].innerText;
+        
+        //Variable que contendrá el nuevo elemento con el nombre del RM
+        var nuevoTd = document.createElement("td");
+        //En la siguiente variable almacenamos el texto que contendra después nuestro nuevoTd
+        var contenidoTd1 = document.createTextNode(RM);
+        nuevoTd.appendChild(contenidoTd1);
+
+        //Variable que contendrá el nuevo elemento con los puntos del RM
+        var nuevoTd2 = document.createElement("td");
+        //En la siguiente variable almacenamos el texto que contendra después nuestro nuevoTd
+        var contenidoTd2 = document.createTextNode(points);
+        nuevoTd2.appendChild(contenidoTd2);
+
+        //Después almacenamos un array con los td que contiene el segundo tr
+        var trSecond = totalTr[2].getElementsByTagName("td");
+
+        //Con la siguiente línea le pasamos el contenido de la variable que almacena el nombre del equipo al td donde queremos que se sitúe
+        trSecond[2].appendChild(nuevoTd);
+
+        //A continuación hacemos lo mismo con la puntuación
+        trSecond[4].appendChild(nuevoTd2);
+
+
+        //Por ultimo quitamos el p de abajo
+        divBorde[1].style.display = "none";
+
+
+
+
+
+    </script>
+
+</html>
